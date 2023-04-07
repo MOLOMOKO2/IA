@@ -117,6 +117,7 @@ function User() {
                           onClick={() => setSelectedUser(data)}
                         >
                           <Link to={`/update/${data.ID}`} className="btn btn-primary me-2">
+                          <FaEdit/>
                             Update
                           </Link>
                           &nbsp;
