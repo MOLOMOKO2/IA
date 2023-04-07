@@ -36,6 +36,38 @@
     transition: background-color 0.3s ease-in-out;
 }
 
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+select {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+select:hover,
+select:focus {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+option {
+    font-size: 16px;
+}
+
 .add-container {
     display: flex;
     justify-content: flex-end;
