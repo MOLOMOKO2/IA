@@ -16,7 +16,7 @@ function User() {
   const [searchValue, setSearchValue] = useState("");
  
 
-
+// Here I make a request from the database to take the data from it
   useEffect(() => {
     axios
       .get("http://localhost:8081/")
@@ -26,6 +26,7 @@ function User() {
       })
       .catch((err) => console.log(err));
   }, []);
+  // The end of the useEffect 
 
   const getTypeBackgroundColor = (type) => {
     switch (type) {
@@ -112,6 +113,9 @@ return (
                   }
                   return false;
                 })
+                
+                //This map function will loop on all the data (with ID) in the database and make it display below the table header
+                
                 .map((data) => (
                   <tr key={data._id}>
                     <td>{data.Name}</td>
@@ -137,7 +141,8 @@ return (
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))} // the end of the map function
+                
             </tbody>
         </table>
       </div>
