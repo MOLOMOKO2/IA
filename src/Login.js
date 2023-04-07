@@ -20,32 +20,34 @@ function Login() {
       ...prev,[e.target.name]:[e.target.value]
     }))
   }
-  const handle =(e)=>{
+    const handle =(e)=>{
+    const  Email  = values.email;
+    const  Password  = values.password;
     e.preventDefault();
     seterror(validation(values));
     if( errors.email === ""  &&  errors.password === ""){
-      axios.post('http://localhost:8081/login',values)
+      axios.get('http://localhost:8081/login/'+Email +"/"+ Password ,values)
       .then(res =>{
-        if(res.data === "succ"){
-          navigate('User');
-        }
-        else{
-          console.log(res);
-        }
+          console.log(res.data[0].Type);
+          if(res.data[0].Type === 1){
+            
+            console.log(res.data[0]);
+            navigate('/user/:id');
+          }
+          else if(res.data[0].Type === 2){
+            console.log(" inst");
+          }
+          else if(res.data[0].Type === 3){
+            console.log(" stud");
+          }
+          else {
+            console.log("errrrrr");
+          }
       })
       .catch(err => console.log(err));
     }
   }
 
-  // const login =(event)=>{
-  //   event.preventDefault();
-  //   Axios.post('http://localhost:8081/login',{
-  //     email :email,
-  //     password :password,
-  //   }).then((response)=>{
-  //     console.log(response);
-  //   })
-  // }
   return (
     <div className='loginClass'>
       <div className='loginContiner'>
