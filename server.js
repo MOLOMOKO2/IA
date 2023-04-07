@@ -22,6 +22,8 @@ db.connect((err) => {
     }
 });
 
+/*Here i get all data from the database */
+
 app.get("/", (req, res) => {
     const sql = "SELECT * FROM user";
     db.query(sql, (err, data) => {
@@ -32,6 +34,10 @@ app.get("/", (req, res) => {
         }
     });
 });
+
+/*-----End of the Display data-----*/
+
+/*This function Yosra made it to check if the email and password exist in the database*/
 
 app.post('/login',(req, res)=>{
     const sql="SELECT * FROM user WHERE `Email` = ? AND `Password` = ? ";
@@ -51,6 +57,9 @@ app.post('/login',(req, res)=>{
     });
 });
 
+/*-----End of check the password and email-----*/
+
+/*This is for add user for the database*/
 app.post('/create', (req, res) => {
     const sql = "INSERT INTO user (name, email, password, phone, status, type) VALUES (?, ?, ?, ?, ?, ?)";
     const values = [
@@ -61,7 +70,6 @@ app.post('/create', (req, res) => {
         req.body.status,
         req.body.type
     ];
-
     db.query(sql, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -73,6 +81,9 @@ app.post('/create', (req, res) => {
     });
 });
 
+/*-----End of the add user -----*/
+
+/*This is for update user (using his id)*/
 app.put('/update/:id', (req, res) => {
     const sql = "UPDATE user SET `Name` =? , `Email` =? ,`Password` =? ,`Phone` =? ,`Status` =? ,`Type` =?  WHERE ID =? ";
     const values =[
@@ -93,6 +104,10 @@ app.put('/update/:id', (req, res) => {
     });
 });
 
+/*-----End of Update user-----*/
+
+/*This is for delete User (using his id)*/ 
+
 app.delete('/user/:id', (req, res) => {
     const sql = "DELETE FROM user WHERE ID =? ";
     const id=req.params.id;
@@ -104,6 +119,9 @@ app.delete('/user/:id', (req, res) => {
         return res.json(data);
     });
 });
+
+/*-----End of Delete user-----*/
+
 app.listen(8081, () => {
     console.log("listening on port 8081");
 });
