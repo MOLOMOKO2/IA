@@ -33,7 +33,6 @@ app.get("/", (req, res) => {
     });
 });
 
-
 app.post('/login',(req, res)=>{
     const sql="SELECT * FROM user WHERE `Email` = ? AND `Password` = ? ";
     db.query( sql,[req.body.email,req.body.password], (err, data) => {
@@ -47,10 +46,7 @@ app.post('/login',(req, res)=>{
             return res.json("succ"); 
         }
         else{
-            
-            return res.json("WRONG EMAIL or PASS");
-
-            
+            return res.json("WRONG EMAIL or PASS");  
         }
     });
 });
@@ -76,6 +72,7 @@ app.post('/create', (req, res) => {
         }
     });
 });
+
 app.put('/update/:id', (req, res) => {
     const sql = "UPDATE user SET `Name` =? , `Email` =? ,`Password` =? ,`Phone` =? ,`Status` =? ,`Type` =?  WHERE ID =? ";
     const values =[
