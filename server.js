@@ -34,6 +34,26 @@ app.get("/", (req, res) => {
 });
 
 
+app.post('/login',(req, res)=>{
+    const sql="SELECT * FROM user WHERE `Email` = ? AND `Password` = ? ";
+    db.query( sql,[req.body.email,req.body.password], (err, data) => {
+        if (err) {
+            return res.json("error");
+        }
+        if(data.length>0){
+            console.log(req.body.email);
+            console.log(data.lenght);
+            console.log(req.body.password);
+            return res.json("succ"); 
+        }
+        else{
+            
+            return res.json("WRONG EMAIL or PASS");
+
+            
+        }
+    });
+});
 
 app.post('/create', (req, res) => {
     const sql = "INSERT INTO user (name, email, password, phone, status, type) VALUES (?, ?, ?, ?, ?, ?)";
